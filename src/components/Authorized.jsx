@@ -1,14 +1,13 @@
-import { Navigate, Outlet } from "react-router-dom"
-import { NavBar } from "./Navbar.jsx"
+import { Navigate, useLocation } from "react-router-dom"
 
-export const Authorized = () => {
+export const Authorized = ({ children }) => {
+  let location = useLocation()
+
   if (localStorage.getItem("rater_token")) {
-    return <>
-      <NavBar />
-      <main className="p-4">
-        <Outlet />
-      </main>
-    </>
+    return children
   }
-  return <Navigate to='/login' replace />
+
+  else {
+  return <Navigate to='/login' state={{ from: location }} replace />
+}
 }

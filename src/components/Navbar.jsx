@@ -6,13 +6,13 @@ export const NavBar = () => {
     return (
         <ul className="navbar pb-10">
             <li className="navbar__item pl-10">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/allgames"}>All Games</NavLink>
+                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/games"}>Games</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/create"}>Collect a Rock</NavLink>
+                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/create"}>Add Game</NavLink>
             </li>
             <li className="navbar__item">
-                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/mine"}>My Rocks</NavLink>
+                <NavLink className="text-left underline text-blue-600 hover:text-purple-700" to={"/mygames"}>My Games</NavLink>
             </li>
             {
                 (localStorage.getItem("rater_token") !== null) ?
