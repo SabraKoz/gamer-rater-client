@@ -3,10 +3,12 @@ import { GameList } from "./GameList"
 import { useEffect, useState } from "react"
 import { NavBar } from "./Navbar"
 import { GameDetails } from "./GameDetails"
+import { NewGame } from "./NewGame"
 
 
 export const ApplicationViews = () => {
     const [games, setGames] = useState([])
+    const [categories, setCategories] = useState([])
     const [currentUser, setCurrentUser] = useState("")
 
     useEffect(() => {
@@ -30,6 +32,18 @@ export const ApplicationViews = () => {
         setGames(allGames)
     }
 
+    const fetchCategories = async () => {
+        const response = await fetch("http://localhost:8000/categories", 
+            {
+                headers: {
+                    Authorization: `Token ${JSON.parse(localStorage.getItem("rater_token")).token}`
+                }
+            }
+        )
+        const allCategories = await response.json()
+        setCategories(allCategories)
+    }
+
     return <BrowserRouter>
         <Routes>
             <Route path="/" element={<><NavBar/><Outlet/></>} >
@@ -39,6 +53,7 @@ export const ApplicationViews = () => {
                     <Route index element={<GameDetails currentUser={currentUser} />} />
                 </Route>
             </Route>
+            <Route path="/create" element={<NewGame categories={categories} fetchCategories={fetchCategories} fetchGames={fetchGames} />} />
             </Route>
         </Routes>
     </BrowserRouter>
