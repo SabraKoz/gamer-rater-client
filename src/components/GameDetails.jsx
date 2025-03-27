@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 export const GameDetails = ({ currentUser }) => {
     const [game, setGame] = useState([])
+    const [reviews, setReviews] = useState([])
 
     const { gameId } = useParams()
+
+    const navigate = useNavigate()
 
     const fetchGame = async () => {
         const response = await fetch(`http://localhost:8000/games/${gameId}`, {
@@ -16,10 +19,21 @@ export const GameDetails = ({ currentUser }) => {
         setGame(gameData)
     }
 
+    const fetchReviews = async () => {
+        const response = await fetch(`http://localhost:8000/reviews`, {
+            headers: {
+                "Authorization": `Token ${JSON.parse(localStorage.getItem("rater_token")).token}`
+            }
+        })
+        const reviewData = await response.json()
+        const filteredReviews = reviewData.filter(review => review.game === parseInt(gameId))
+        setReviews(filteredReviews)
+    }
+
     useEffect(() => {
       fetchGame()
+      fetchReviews()
     }, [])
-
 
     return (
         <section>
@@ -39,6 +53,13 @@ export const GameDetails = ({ currentUser }) => {
                 ) : (
                     <span>No Categories Available</span>
                 )}
+            </div>
+            <div>
+                <h3>Reviews</h3>
+                <button onClick={() => navigate(`/games/${gameId}/review`)}>Review Game</button>
+                <div>
+                    {reviews.map(review => <div key={review.id}>{review.content}</div>)}
+                </div>
             </div>
         </section>
     )

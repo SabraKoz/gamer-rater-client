@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { NavBar } from "./Navbar"
 import { GameDetails } from "./GameDetails"
 import { NewGame } from "./NewGame"
+import { ReviewGame } from "./ReviewGame"
 
 
 export const ApplicationViews = () => {
@@ -49,9 +50,8 @@ export const ApplicationViews = () => {
             <Route path="/" element={<><NavBar/><Outlet/></>} >
             <Route path="/games">
                 <Route index element={<GameList games={games} fetchGames={fetchGames} currentUser={currentUser} />} />
-                <Route path=":gameId" >
-                    <Route index element={<GameDetails currentUser={currentUser} />} />
-                </Route>
+                <Route path=":gameId" element={<GameDetails currentUser={currentUser} />} />
+                <Route path=":gameId/review" element={<ReviewGame />} />
             </Route>
             <Route path="/create" element={<NewGame categories={categories} fetchCategories={fetchCategories} fetchGames={fetchGames} />} />
             </Route>
