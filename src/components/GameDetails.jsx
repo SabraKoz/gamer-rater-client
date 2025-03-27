@@ -38,6 +38,7 @@ export const GameDetails = ({ currentUser }) => {
     return (
         <section>
             <h1>{game.title}</h1>
+            <div>Description: {game.description}</div>
             <div>Designer: {game.designer}</div>
             <div>Year Released: {game.year_released}</div>
             <div>Number of Players: {game.num_players}</div>
@@ -54,6 +55,9 @@ export const GameDetails = ({ currentUser }) => {
                     <span>No Categories Available</span>
                 )}
             </div>
+            {game.is_owner === true && (
+                <button onClick={() => navigate(`/games/${gameId}/edit`)}>Edit Game</button>
+            )}
             <div>
                 <h3>Reviews</h3>
                 <button onClick={() => navigate(`/games/${gameId}/review`)}>Review Game</button>

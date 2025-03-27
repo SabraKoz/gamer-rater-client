@@ -5,6 +5,7 @@ import { NavBar } from "./Navbar"
 import { GameDetails } from "./GameDetails"
 import { NewGame } from "./NewGame"
 import { ReviewGame } from "./ReviewGame"
+import { EditGame } from "./EditGame"
 
 
 export const ApplicationViews = () => {
@@ -52,6 +53,7 @@ export const ApplicationViews = () => {
                 <Route index element={<GameList games={games} fetchGames={fetchGames} currentUser={currentUser} />} />
                 <Route path=":gameId" element={<GameDetails currentUser={currentUser} />} />
                 <Route path=":gameId/review" element={<ReviewGame />} />
+                <Route path=":gameId/edit" element={<EditGame categories={categories} fetchCategories={fetchCategories} fetchGames={fetchGames} />} />
             </Route>
             <Route path="/create" element={<NewGame categories={categories} fetchCategories={fetchCategories} fetchGames={fetchGames} />} />
             </Route>
