@@ -33,7 +33,7 @@ export const ReviewGame = () => {
         <section className="m-5">
             <form className="m-5 p-5 card">
                 <fieldset className="m-3">
-                    <label>Review: </label>
+                    <label className="title is-6">Review: </label>
                     <textarea 
                         onChange={e => {
                             const copy = {...newReview}
@@ -43,7 +43,7 @@ export const ReviewGame = () => {
                         value={newReview.content} />
                 </fieldset>
                 <fieldset className="m-3">
-                    <label>Rating: </label>
+                    <label className="title is-6">Rating: </label>
                     <input 
                         type="number"
                         onChange={e => {
