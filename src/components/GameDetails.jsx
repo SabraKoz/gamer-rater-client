@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 export const GameDetails = ({ currentUser }) => {
     const [game, setGame] = useState([])
     const [reviews, setReviews] = useState([])
+    const [isModalActive, setIsModalActive] = useState(false)
 
     const { gameId } = useParams()
 
@@ -35,6 +36,17 @@ export const GameDetails = ({ currentUser }) => {
         fetchReviews()
     }, [])
 
+    const handleDelete = async (gameId) => {
+        await fetch(`http://localhost:8000/games/${gameId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${JSON.parse(localStorage.getItem("rater_token")).token}`
+            }
+        })
+
+        navigate(`/games`)
+    }
+
     return (
         <section className="m-6">
             <div className="card p-5 m-5">
@@ -58,8 +70,26 @@ export const GameDetails = ({ currentUser }) => {
                 </div>
                 {game.is_owner === true && (
                     <div>
-                        <button className="button is-warning m-3" onClick={() => navigate(`/games/${gameId}/edit`)}>Edit Game</button>
-                        <button className="button is-danger m-3" >Delete Game</button>
+                        <div>
+                            <button className="button is-warning m-3" onClick={() => navigate(`/games/${gameId}/edit`)}>Edit Game</button>
+                            <button className="button is-danger m-3" onClick={() => setIsModalActive(true)}>Delete Game</button>
+                        </div>
+                        <div id="deleteModal" className={`modal ${isModalActive ? "is-active" : ""}`}>
+                            <div className="modal-background"></div>
+                            <div className="modal-card">
+                                <header className="modal-card-head">
+                                    <p className="modal-card-title">Confirm Delete</p>
+                                    <button className="delete" aria-label="close" onClick={() => setIsModalActive(false)}></button>
+                                </header>
+                                <section className="modal-card-body">
+                                    Are you sure you want to delete this game? This action cannot be undone.
+                                </section>
+                                <footer className="modal-card-foot">
+                                    <button className="button is-danger m-3" onClick={() => handleDelete(gameId)}>Delete</button>
+                                    <button className="button is-primary m-3" onClick={() => setIsModalActive(false)}>Cancel</button>
+                                </footer>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
