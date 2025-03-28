@@ -4,7 +4,6 @@ import { Register } from "./pages/Register"
 import { Authorized } from "./components/Authorized"
 import { ApplicationViews } from "./components/ApplicationViews"
 
-
 export const App = () => {
 
     return (

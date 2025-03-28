@@ -52,10 +52,10 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
     }
 
     return (
-        <section>
-            <form>
-                <h1>Edit Game</h1>
-                <fieldset>
+        <section className="m-5">
+            <form className="card m-5 p-5">
+                <h1 className="m-6 title is-3 has-text-centered has-text-primary">Edit Game</h1>
+                <fieldset className="m-3">
                     <label>Title: </label>
                     <input
                         id="title"
@@ -68,7 +68,7 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
                         value={game.title || ""}
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Description: </label>
                     <input
                         id="description"
@@ -81,7 +81,7 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
                         value={game.description || ""}
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Designer: </label>
                     <input
                         id="designer"
@@ -94,7 +94,7 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
                         value={game.designer || ""}
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Year Released: </label>
                     <input
                         id="year_released"
@@ -107,7 +107,7 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
                         value={game.year_released || 1900}
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Number of Players: </label>
                     <input
                         id="num_players"
@@ -120,7 +120,7 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
                         value={game.num_players || 0}
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Estimate Time to Play: </label>
                     <input
                         id="estimated_playtime"
@@ -133,7 +133,7 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
                         value={game.estimated_playtime || 0}
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Age Recommendation: </label>
                     <input
                         id="age_recommendation"
@@ -146,9 +146,9 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
                         value={game.age_recommendation || 0}
                     />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Categories: </label>
-                    <div>
+                    <div className="m-3">
                         {categories.map((category) => (
                             <div key={category.id}>
                                 <input
@@ -162,8 +162,8 @@ export const EditGame = ({ categories, fetchCategories, fetchGames }) => {
                         ))}
                     </div>
                 </fieldset>
-                <fieldset>
-                    <button type="submit" onClick={updateGame}>Save Changes</button>
+                <fieldset className="m-3">
+                    <button className="button is-primary m-3" type="submit" onClick={updateGame}>Save Changes</button>
                 </fieldset>
             </form>
         </section>

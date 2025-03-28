@@ -14,7 +14,7 @@ export const GameDetails = ({ currentUser }) => {
             headers: {
                 "Authorization": `Token ${JSON.parse(localStorage.getItem("rater_token")).token}`
             }
-    })
+        })
         const gameData = await response.json()
         setGame(gameData)
     }
@@ -31,38 +31,40 @@ export const GameDetails = ({ currentUser }) => {
     }
 
     useEffect(() => {
-      fetchGame()
-      fetchReviews()
+        fetchGame()
+        fetchReviews()
     }, [])
 
     return (
-        <section>
-            <h1>{game.title}</h1>
-            <div>Description: {game.description}</div>
-            <div>Designer: {game.designer}</div>
-            <div>Year Released: {game.year_released}</div>
-            <div>Number of Players: {game.num_players}</div>
-            <div>Estimated Time to Play: {game.estimated_playtime}</div>
-            <div>Age Recommendation: {game.age_recommendation}</div>
-            <div>Categories: {" "}
-                {game.category_details?.length > 0 ? (
-                    <ul>
-                        {game.category_details.map(category => (
-                            <li key={category.id}>{category.name}</li>
-                        ))}
-                    </ul>
-                ) : (
-                    <span>No Categories Available</span>
+        <section className="m-6">
+            <div className="card p-5 m-5">
+                <h1 className="m-3 title is-3 has-text-centered has-text-primary">{game.title}</h1>
+                <div className="m-2">Description: {game.description}</div>
+                <div className="m-2">Designer: {game.designer}</div>
+                <div className="m-2">Year Released: {game.year_released}</div>
+                <div className="m-2">Number of Players: {game.num_players}</div>
+                <div className="m-2">Estimated Time to Play: {game.estimated_playtime}</div>
+                <div className="m-2">Age Recommendation: {game.age_recommendation}</div>
+                <div className="m-2">Categories: {" "}
+                    {game.category_details?.length > 0 ? (
+                        <ul className="m-2">
+                            {game.category_details.map(category => (
+                                <li className="m-2" key={category.id}>{category.name}</li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <span>No Categories Available</span>
+                    )}
+                </div>
+                {game.is_owner === true && (
+                    <button className="button is-primary m-3" onClick={() => navigate(`/games/${gameId}/edit`)}>Edit Game</button>
                 )}
             </div>
-            {game.is_owner === true && (
-                <button onClick={() => navigate(`/games/${gameId}/edit`)}>Edit Game</button>
-            )}
-            <div>
-                <h3>Reviews</h3>
-                <button onClick={() => navigate(`/games/${gameId}/review`)}>Review Game</button>
-                <div>
-                    {reviews.map(review => <div key={review.id}>{review.content}</div>)}
+            <div className="card m-6 p-6">
+                <h3 className="m-3 title is-4 has-text-centered has-text-primary">Reviews</h3>
+                <button className="button is-primary m-3" onClick={() => navigate(`/games/${gameId}/review`)}>Review Game</button>
+                <div className="m-3">
+                    {reviews.map(review => <div className="m-2 p-2 card" key={review.id}>{review.content}</div>)}
                 </div>
             </div>
         </section>

@@ -50,10 +50,10 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
     }
 
     return (
-        <section>
-            <form>
-                <h1>Register New Game</h1>
-                <fieldset>
+        <section className="m-5">
+            <form className="card m-5 p-5">
+                <h1 className="m-6 title is-3 has-text-centered has-text-primary">Register New Game</h1>
+                <fieldset className="m-3">
                     <label>Title: </label>
                     <input id="title" type="text"
                         onChange={e => {
@@ -63,7 +63,7 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
                         }}
                         value={gameData.title} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Description: </label>
                     <input id="description" type="text"
                         onChange={e => {
@@ -73,7 +73,7 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
                         }}
                         value={gameData.description} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Designer: </label>
                     <input id="designer" type="text"
                         onChange={e => {
@@ -83,7 +83,7 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
                         }} 
                         value={gameData.designer} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Year Released: </label>
                     <input id="year_released" type="number"
                         onChange={e => {
@@ -93,7 +93,7 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
                         }}
                         value={gameData.year_released} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Number of Players: </label>
                     <input id="num_players" type="number"
                         onChange={e => {
@@ -103,7 +103,7 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
                         }}
                         value={gameData.num_players} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Estimate Time to Play: </label>
                     <input id="estimated_playtime" type="number"
                         onChange={e => {
@@ -113,7 +113,7 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
                         }} 
                         value={gameData.estimated_playtime}/>
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Age Recommendation: </label>
                     <input id="age_recommendation" type="number"
                         onChange={e => {
@@ -123,9 +123,9 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
                         }} 
                         value={gameData.age_recommendation} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Categories: </label>
-                    <div>
+                    <div className="m-3">
                         {categories.map(category => (
                             <div key={category.id}>
                                 <input
@@ -138,8 +138,8 @@ export const NewGame = ({ categories, fetchCategories, fetchGames }) => {
                         ))}
                     </div>
                 </fieldset>
-                <fieldset>
-                    <button type="submit" 
+                <fieldset className="m-3">
+                    <button className="button is-primary m-3" type="submit" 
                         onClick={saveGame}>Save</button>
                 </fieldset>
             </form>

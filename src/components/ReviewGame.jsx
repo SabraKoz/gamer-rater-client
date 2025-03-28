@@ -30,9 +30,9 @@ export const ReviewGame = () => {
     }
 
     return (
-        <section>
-            <form>
-                <fieldset>
+        <section className="m-5">
+            <form className="m-5 p-5 card">
+                <fieldset className="m-3">
                     <label>Review: </label>
                     <textarea 
                         onChange={e => {
@@ -42,7 +42,7 @@ export const ReviewGame = () => {
                         }
                         value={newReview.content} />
                 </fieldset>
-                <fieldset>
+                <fieldset className="m-3">
                     <label>Rating: </label>
                     <input 
                         type="number"
@@ -53,8 +53,8 @@ export const ReviewGame = () => {
                         }}
                         value={newReview.rating} />
                 </fieldset>
-                <fieldset>
-                    <button type="submit" onClick={submitReview}>Save</button>
+                <fieldset className="m-3">
+                    <button className="m-3 button is-primary" type="submit" onClick={submitReview}>Save</button>
                 </fieldset>
             </form>
         </section>
